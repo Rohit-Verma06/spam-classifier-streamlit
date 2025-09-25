@@ -1,4 +1,4 @@
 streamlit
 scikit-learn
 pandas
-nltk
+nltk==3.8.1
