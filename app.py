@@ -3,21 +3,24 @@ import pickle
 import string
 import nltk
 
-# --- NLTK Data Download Section ---
-# This block of code ensures that the necessary NLTK data is downloaded.
-try:
-    nltk.data.find('corpora/stopwords')
-except nltk.downloader.DownloadError:
-    nltk.download('stopwords')
-try:
-    nltk.data.find('tokenizers/punkt')
-except nltk.downloader.DownloadError:
-    nltk.download('punkt')
-# --- End of NLTK Data Download ---
-
-# We import these AFTER the download to ensure they exist
+# We need to import these here to download the data
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+
+# This is a one-time download of the necessary NLTK data
+# It will be skipped if the data is already present
+def download_nltk_data():
+    try:
+        nltk.data.find('corpora/stopwords')
+    except nltk.downloader.DownloadError:
+        nltk.download('stopwords')
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except nltk.downloader.DownloadError:
+        nltk.download('punkt')
+
+download_nltk_data()
+
 
 ps = PorterStemmer()
 
